@@ -1,0 +1,54 @@
+    public static List<String> bomberMan(int n, List<String> grid) {
+    // Write your code here
+        if(n <= 1) {
+            return grid;
+        }
+        if(n % 2 == 0) {
+            fillGrid(grid);
+        }
+        if(n % 4 == 3) {
+            explodeGrid(grid);
+        }
+        if(n % 4 == 1)  {
+            explodeGrid(grid);
+            explodeGrid(grid);
+        }
+        return grid;
+    }
+    public static void fillGrid(List<String> grid) {
+    grid.replaceAll(s -> s.replace('.', 'O'));
+}
+
+public static void explodeGrid(List<String> grid) {
+    
+    int rowNum = grid.size();
+    int colNum = grid.get(0).length();
+    char[][] explodedGrid = new char[rowNum][colNum];
+
+    for (int row = 0; row < rowNum; row++)
+        for (int col = 0; col < colNum; col++) {
+            char cell = grid.get(row).charAt(col);
+
+            if (cell == 'O') {
+                explodedGrid[row][col] = '.';
+
+                if (row - 1 >= 0)
+                    explodedGrid[row - 1][col] = '.';
+
+                if (row + 1 < rowNum)
+                    explodedGrid[row + 1][col] = '.';
+
+                if (col - 1 >= 0)
+                    explodedGrid[row][col - 1] = '.';
+
+                if (col + 1 < colNum)
+                    explodedGrid[row][col + 1] = '.';
+            }
+            else
+            if (explodedGrid[row][col] != '.')
+                explodedGrid[row][col] = 'O';
+        }
+
+    for (int row = 0; row < rowNum; row++)
+        grid.set(row, new String(explodedGrid[row]));
+}   
