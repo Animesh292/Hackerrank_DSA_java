@@ -1,0 +1,26 @@
+    public static long flippingBits(long n) {
+        // if(n == 0) {
+        //     return 0;
+        // }
+        
+        // StringBuilder binary = new StringBuilder();
+        // while(n > 0) {
+        //     long bit = n % 2;
+        //     binary.insert(0, bit);
+        //     n /= 2;
+        // }
+        String binary = Long.toBinaryString(n); //Here we convert a long value to binary
+        
+        while(binary.length() < 32) {
+            binary = '0' + binary;   //convertingto 32 bit binary value
+        }
+        StringBuilder output = new StringBuilder();
+        for(int i = 0; i < 32; i++) {
+            if(binary.charAt(i) == '0') {
+                output.append('1');
+            } else {
+                output.append('0');
+            }
+        }
+        return Long.parseLong(output.toString(), 2);   //here we convert the binary output into long
+    }
