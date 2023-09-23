@@ -1,0 +1,10 @@
+    public static int towerBreakers(int n, int m) {
+        int player1 = 1;
+        int player2 = 2;
+        
+        if(m == 1 || (n % 2) == 0) {  // if tower are even or height of tower is 1 than player 2 wins.
+            return player2;  
+        } else {
+            return player1; //otherwise, if tower are odd than player 1 wins. 
+        }
+    }
