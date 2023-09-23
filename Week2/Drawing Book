@@ -1,0 +1,23 @@
+    public static int pageCount(int n, int p) {
+        int minPagesstart = 0;
+        int minPagesend = 0;
+        int countPages = 0;
+        if(n == p) {
+            return 0;
+        }
+        //If we start flipping from start to reach p
+        for(int i = 0; i <= p; i++) {
+            countPages = i;
+            if(countPages % 2 == 0 && countPages != 0) {
+                minPagesstart++;
+            }
+        }
+        // If we start flipping from end to reach p
+        for(int i = n; i >= p; i--) {
+            if(i % 2 != 0 && i != n) {
+                minPagesend++;
+            }
+        }
+        int MinPages = Math.min(minPagesstart, minPagesend);
+        return MinPages;
+    }
