@@ -1,0 +1,26 @@
+    public static String balancedSums(List<Integer> arr) {
+        // List<Integer> leftsum = new ArrayList<>();
+        int leftsum[] = new int[arr.size()];
+        leftsum[0] = 0;
+        int sum1 = 0;
+        for(int i = 1; i < arr.size(); i++) {
+            sum1 += arr.get(i-1);
+            leftsum[i] = sum1;  
+        }
+        
+        // List<Integer> rightsum = new ArrayList<>();
+        int rightsum[] = new int[arr.size()];
+        rightsum[arr.size()-1] = 0;
+        int sum2 = 0;
+        for(int i = arr.size()-2; i >= 0; i--) {
+            sum2 += arr.get(i+1);
+            rightsum[i] = sum2;
+        }
+        
+        for(int i = 0; i < arr.size(); i++) {
+            if(leftsum[i] == rightsum[i]) {
+                return "YES";
+            } 
+        }
+            return "NO";
+        }
