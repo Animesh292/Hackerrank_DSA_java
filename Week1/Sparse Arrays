@@ -1,0 +1,14 @@
+    public static List<Integer> matchingStrings(List<String> strings, List<String> queries) {
+    ArrayList<Integer> results = new ArrayList<>();
+    
+    for(int i = 0; i < queries.size(); i++) {
+        int count = 0;
+        for(int j = 0; j < strings.size(); j++) {
+        if(strings.get(j).equals(queries.get(i))){
+        count++;
+        }
+    }
+    results.add(count);
+    }
+    return results;
+}
