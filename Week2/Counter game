@@ -1,0 +1,4 @@
+ public static String counterGame(long n) {
+            int setBits = Long.bitCount(n - 1);
+            return (setBits % 2 == 0) ? "Richard" : "Louise";
+        } 
