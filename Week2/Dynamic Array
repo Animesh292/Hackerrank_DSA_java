@@ -1,0 +1,26 @@
+    public static List<Integer> dynamicArray(int n, List<List<Integer>> queries) {
+        int lastAnswer = 0;
+        int N = queries.size();
+        List<Integer> ans = new ArrayList<>();
+        List<List<Integer>> arr = new ArrayList<>();
+        
+        for(int i = 0; i < n; i++) {
+            arr.add(new ArrayList<>());
+        }
+        
+        for(int i = 0; i < queries.size(); i++) {
+            List<Integer> query = queries.get(i);
+            int idx = query.get(0);
+            int x = query.get(1);
+            int y = query.get(2);
+            if(idx == 1 ){
+                idx = ((x ^ lastAnswer) % n);
+                arr.get(idx).add(y);
+            } else {
+                idx = ((x ^ lastAnswer) % n);
+                lastAnswer = arr.get(idx).get(y % arr.get(idx).size());
+                ans.add(lastAnswer);
+            }
+        }
+        return ans;
+    }
