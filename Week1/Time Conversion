@@ -1,0 +1,20 @@
+    public static String timeConversion(String s) {
+        String MilitaryVal = " ";
+        String the12hour = s.substring(0, 2);
+        String amorpm = s.substring(s.length()-2);
+        int armyhour = Integer.parseInt(the12hour);
+    
+    
+        if(amorpm.contains("AM")) {
+            if(armyhour == 12)
+           MilitaryVal = "00" + s.substring(2, s.length()-2);
+           else 
+           MilitaryVal = s.substring(0, s.length()-2);
+        } else if(amorpm.contains("PM")) {
+            if(armyhour == 12)
+            MilitaryVal = s.substring(0, s.length()-2); 
+         else 
+            MilitaryVal = armyhour + 12 + s.substring(2, s.length()-2);
+    }
+     return MilitaryVal;
+}
