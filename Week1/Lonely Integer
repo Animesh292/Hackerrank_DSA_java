@@ -1,0 +1,17 @@
+    public static int lonelyinteger(List<Integer> a) {
+        HashMap<Integer, Integer> hm = new HashMap<>();
+        int lonelyelement = 0;
+        for(int i = 0; i < a.size(); i++) {
+            if(hm.containsKey(a.get(i))) {
+                hm.put(a.get(i), hm.get(a.get(i))+1);
+            } else {
+                hm.put(a.get(i), 1);
+            }
+        }
+        
+        for(int k : hm.keySet()) {
+            if(hm.get(k) == 1) 
+            lonelyelement = k;
+        }
+        return lonelyelement;
+    }
