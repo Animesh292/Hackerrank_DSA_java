@@ -1,0 +1,21 @@
+    public static int sockMerchant(int n, List<Integer> ar) {
+      HashSet<Integer> hs = new HashSet<>();
+      for(int i = 0; i < n; i++) {
+          hs.add(ar.get(i)); //adding the elements to the set
+      }
+      
+      int Pairs = 0;
+      int N = 1;
+      for (int Key : hs) { //creating a foreach loop to iterate over the key set 
+      int count = 0;
+      for(int i = 0; i < n; i++)  {
+          if(Key == ar.get(i)) {
+             count++;
+             if(count == 2 || count % 2 == 0) {
+                 Pairs++;
+             } 
+          }           
+      }
+    }
+    return Pairs;
+}
