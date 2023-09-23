@@ -1,0 +1,24 @@
+    public static void plusMinus(List<Integer> arr) {
+        int zero = 0;
+        int positives = 0;
+        int negatives = 0;
+        int zeroes = 0;
+        for(int i = 0; i < arr.size(); i++) {
+           if(arr.get(i) > zero){
+               positives++;
+           }
+           if(arr.get(i) < zero) {
+               negatives++;
+           }
+           if(arr.get(i) == zero) {
+               zeroes++;
+           }
+        }
+        double positiveratio = (double)positives/arr.size();
+        double negativeratio = (double)negatives/arr.size();
+        double zeroratio = (double)zeroes/arr.size();
+        
+        System.out.printf("%.6f%n", positiveratio);
+        System.out.printf("%.6f%n", negativeratio);
+        System.out.printf("%.6f%n", zeroratio);
+    }
