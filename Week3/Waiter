@@ -1,0 +1,59 @@
+    public static List<Integer> waiter(List<Integer> number, int q) {
+    // Write your code here
+        List<Integer> answers = new ArrayList<>();
+        //the approach should be first we need to push numbered plates into a stack and then create a list of prime numbers and iterate over the prime numbers to check if it is divisible by number plate if so insert it into Bi else into Ai. For the next iterations we need to select Ai against prime number at i.
+        //Repeat this until all the iterations are complete and move the 
+        //Ai element into answers and return it.
+        
+        //1- Creating list of prime numbers
+        List<Integer> Primes = getPrimes(number);
+        Stack<Integer> numberstack = new Stack<>();
+        for(int i = 0; i < number.size(); i++) {
+            numberstack.push(number.get(i));
+        }
+        
+        int curr = 0;
+        while(q != 0) {
+            Stack<Integer> A = new Stack<>();
+            Stack<Integer> B = new Stack<>();
+            while(!numberstack.isEmpty()) {
+                int top = numberstack.pop();
+                if(top % Primes.get(curr) == 0) {
+                    B.push(top);
+                } else {
+                    A.push(top);
+                }
+            }
+            curr++;
+            numberstack = A;
+            while(!B.isEmpty()) {
+                answers.add(B.pop());
+            }
+            q--;
+            if(q==0) {
+            while(!A.isEmpty()) {
+                answers.add(A.pop());
+            }
+        }
+        }
+        return answers;
+    }
+    
+    public static List<Integer> getPrimes(List<Integer> number){
+    List<Integer> primeNos = new ArrayList<>();
+    int no = 2;
+    while(primeNos.size() != number.size()) {
+        boolean flag = false;
+        for(int i=2; i<=Math.sqrt(no); i++) {
+            if(no%i == 0) {
+                flag = !flag;
+                break;
+            }  
+        }
+        if(!flag) {
+            primeNos.add(no);
+        }
+        no++;
+    }
+    return primeNos;
+}
