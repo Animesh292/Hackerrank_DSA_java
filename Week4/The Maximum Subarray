@@ -1,0 +1,19 @@
+   public static List<Integer> maxSubarray(List<Integer> arr) {
+    // Write your code here
+    List<Integer> res = new ArrayList<>();
+        int maxArr = Integer.MIN_VALUE;
+        int maxSeq = Integer.MIN_VALUE;
+        int sum = 0;
+        for (Integer value : arr) {
+            sum = Math.max(value, sum + value);
+            maxArr = Math.max(maxArr, sum);
+            if (value > 0) {
+                maxSeq = Math.max(maxSeq + value, value);
+            } else {
+                maxSeq = Math.max(maxSeq, value);
+            }
+        }
+        res.add(maxArr);
+        res.add(maxSeq);
+        return res;
+    }
