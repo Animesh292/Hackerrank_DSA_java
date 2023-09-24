@@ -1,0 +1,20 @@
+	void decode(String s, Node root) {
+        StringBuilder decodedString = new StringBuilder();
+        Node current = root;
+        
+        for(int i = 0; i < s.length(); i++) {
+            if(s.charAt(i) == '0') {
+                current = current.left;
+            }
+            if(s.charAt(i) == '1') {
+                current = current.right;
+            }
+        
+        if(current.left == null && current.right == null) {
+            decodedString.append(current.data);
+            current = root;
+        }
+        }
+        System.out.println(decodedString.toString());
+    }
+
