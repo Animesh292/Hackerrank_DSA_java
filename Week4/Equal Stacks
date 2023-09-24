@@ -1,0 +1,25 @@
+public static int equalStacks(List<Integer> h1, List<Integer> h2, List<Integer> h3) {
+    int height1 = calculateHeight(h1);
+    int height2 = calculateHeight(h2);
+    int height3 = calculateHeight(h3);
+
+    while (!(height1 == height2 && height2 == height3)) {
+        if (height1 >= height2 && height1 >= height3) {
+            height1 -= h1.remove(0);
+        } else if (height2 >= height1 && height2 >= height3) {
+            height2 -= h2.remove(0);
+        } else if (height3 >= height1 && height3 >= height2) {
+            height3 -= h3.remove(0);
+        }
+    }
+
+    return height1; // height1, height2, and height3 are equal at this point
+}
+
+private static int calculateHeight(List<Integer> stack) {
+    int height = 0;
+    for (int cylinder : stack) {
+        height += cylinder;
+    }
+    return height;
+}
