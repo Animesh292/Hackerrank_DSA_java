@@ -1,0 +1,25 @@
+ public static void main(String[] args) {
+        /* Enter your code here. Read input from STDIN. Print output to STDOUT. Your class should be named Solution. */
+        TreeSet<Integer> set = new TreeSet<>();
+        Scanner sc = new Scanner(System.in);
+        int Q = sc.nextInt();
+        for(int i = 0; i < Q; i++) {
+            int queryType = sc.nextInt();
+            
+            // if we want to add
+            if(queryType == 1) {
+                int element = sc.nextInt();
+                set.add(element);
+            }
+            // if we want to delete
+            if(queryType == 2) {
+                int element = sc.nextInt();
+                set.remove(element);
+            }
+            // if we want to print the minimum
+            if(queryType == 3) {
+                int min = set.first();
+                System.out.println(min);
+            }
+        }
+    }
