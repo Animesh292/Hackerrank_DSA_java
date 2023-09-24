@@ -1,0 +1,24 @@
+    public static int hackerlandRadioTransmitters(List<Integer> x, int k) {
+    Collections.sort(x); // Sort the list of house positions
+
+    int transmitters = 0;
+    int i = 0;
+    
+    while (i < x.size()) {
+        int location = x.get(i); // Current house position
+        
+        // Find the rightmost house that can be covered by the transmitter
+        while (i < x.size() && x.get(i) <= location + k) {
+            i++;
+        }
+        transmitters++; // Place a transmitter at the current house
+        
+        // Find the next uncovered house to continue the process
+        location = x.get(i - 1);
+        while (i < x.size() && x.get(i) <= location + k) {
+            i++;
+        }
+    }
+    
+    return transmitters;
+}
