@@ -1,0 +1,44 @@
+public static long roadsAndLibraries(int n, int c_lib, int c_road, List<List<Integer>> cities) {
+    List<List<Integer>> v = new ArrayList<>();
+    for (int i = 0; i <= n; i++) {
+        v.add(new ArrayList<>());
+    }
+
+    for (int i = 0; i < cities.size(); i++) {
+        v.get(cities.get(i).get(0)).add(cities.get(i).get(1));
+        v.get(cities.get(i).get(1)).add(cities.get(i).get(0));
+    }
+
+    List<Integer> comps = new ArrayList<>();
+    List<Boolean> visited = new ArrayList<>();
+    for (int i = 0; i <= n; i++) {
+        visited.add(false);
+    }
+
+    for (int i = 1; i <= n; i++) {
+        if (v.get(i).size() > 0 && !visited.get(i)) {
+            comps.add(dfs(v, i, visited));
+        } else if (v.get(i).size() == 0) {
+            comps.add(1);
+        }
+    }
+
+    long ans = 0;
+    for (int i = 0; i < comps.size(); i++) {
+        ans += Math.min((comps.get(i) - 1) * c_road + c_lib, comps.get(i) * c_lib);
+    }
+
+    return ans;
+}
+
+public static int dfs(List<List<Integer>> v, int src, List<Boolean> visited) {
+    visited.set(src, true);
+    int ans = 1;
+    for (int i = 0; i < v.get(src).size(); i++) {
+        int neighbor = v.get(src).get(i);
+        if (!visited.get(neighbor)) {
+            ans += dfs(v, neighbor, visited);
+        }
+    }
+    return ans;
+}
