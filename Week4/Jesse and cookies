@@ -1,0 +1,20 @@
+    public static int cookies(int k, List<Integer> A) {
+    // Write your code here
+        // In this problem we need to count the number of operations required until all of the items are greater than k
+      int operations = 0;
+      PriorityQueue<Integer> pq = new PriorityQueue<>();
+      for(int i = 0; i < A.size(); i++) {
+          pq.offer(A.get(i));
+      }
+      
+      while(pq.peek() < k) {
+          if(pq.size() == 1) {
+              return -1;
+          }
+          int least = pq.poll();
+          int secondleast = pq.poll();
+          pq.offer(least + 2 * secondleast);
+          operations++;
+      }
+      return operations;
+    }
