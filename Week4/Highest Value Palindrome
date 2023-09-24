@@ -1,0 +1,58 @@
+public static String highestValuePalindrome(String s, int n, int k) {
+    // char digits[] = number.toCharArray();
+    // int left = 0;
+    // int right = n-1;
+    StringBuilder input = new StringBuilder(s);
+    int need = 0;
+    
+    for(int i=0;i<n/2;i++){
+            char left = input.charAt(i);
+            char right = input.charAt(n-1-i);
+            if(left!=right)
+                need++;
+        }
+        if(need > k){
+            return "-1";
+        }else{
+            int free = k - need;
+            for(int i=0;i<n/2;i++){
+                char left = input.charAt(i);
+                char right= input.charAt(n-1-i);
+                if(free>=2){
+                    if(left!=right)
+                        free++;
+                    if(left!='9'){
+                        input.setCharAt(i, '9');
+                        free--;
+                    }
+                    if(right!='9'){
+                        input.setCharAt(n-1-i, '9');
+                        free--;
+                    }
+                }else if(free==1){
+                    if(left!=right){
+                        if(left=='9'||right=='9')
+                            free++;
+                        if(left!='9'){
+                            input.setCharAt(i, '9');
+                            free--;
+                        }
+                        if(right!='9'){
+                            input.setCharAt(n-1-i, '9');
+                            free--;
+                        }
+                    }
+                }else{
+                    if(left!=right){
+                        if(left>right)
+                            input.setCharAt(n-1-i, left);
+                        else {
+                            input.setCharAt(i, right);
+                        }
+                    }
+                }
+            }
+            if(n%2==1&&free>0)
+                input.setCharAt(n/2, '9');
+            return input.toString();
+        }
